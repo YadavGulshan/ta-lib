@@ -85,6 +85,44 @@ DEF_FUNCTION( VAR,                         /* name */
              );
 /* VAR END */
 
+/* VWAP BEGIN */
+static const TA_InputParameterInfo *TA_VWAP_Inputs[] = 
+{
+  &TA_DEF_UI_Input_Price_HLCV,
+  NULL
+};
+
+static const TA_OutputParameterInfo *TA_VWAP_Outputs[] = 
+{
+  &TA_DEF_UI_Output_Real,
+  NULL
+};
+
+static const TA_OptInputParameterInfo *TA_VWAP_OptInputs[] =
+{
+  &TA_DEF_UI_TimePeriod_30,
+  NULL
+};
+
+static const TA_InputParameterInfo TA_VWAP_DEF_UI_STRUCT_PARAM_1 =
+                                  { TA_Input_Real, "periodTotal1", 0 };
+
+static const TA_InputParameterInfo TA_VWAP_DEF_UI_STRUCT_PARAM_2 =
+                                  { TA_Input_Real, "periodTotal2", 0 };
+
+static const TA_InputParameterInfo *TA_VWAP_StructParams[] = {
+    &TA_VWAP_DEF_UI_STRUCT_PARAM_1,
+    &TA_VWAP_DEF_UI_STRUCT_PARAM_2,
+    NULL };
+
+DEF_FUNCTION( VWAP,                     /* name */
+              TA_GroupId_VolumeIndicators, /* groupId */
+              "Volume Weighted Average Price", /* hint */
+              "Vwap",                       /* CamelCase name */
+              0                            /* flags */
+             );
+/* VWAP END */
+
 /****************************************************************************
  * Step 2 - Add your TA function to the table.
  *          Keep in alphabetical order. Must be NULL terminated.
@@ -92,6 +130,7 @@ DEF_FUNCTION( VAR,                         /* name */
 const TA_FuncDef *TA_DEF_TableV[] =
 {
    ADD_TO_TABLE(VAR),
+   ADD_TO_TABLE(VWAP),
    NULL
 };
 

@@ -10846,6 +10846,73 @@
 /* Generated */                     outNBElement, 
 /* Generated */                     params->out[0].data.outReal /*  outReal */ );
 /* Generated */ }
+/* Generated */ TA_RetCode TA_VWAP_FramePP( const TA_ParamHolderPriv *params,
+/* Generated */                           int            startIdx,
+/* Generated */                           int            endIdx,
+/* Generated */                           int           *outBegIdx,
+/* Generated */                           int           *outNBElement )
+/* Generated */ {
+/* Generated */    return TA_VWAP(/* Generated */              startIdx,
+/* Generated */              endIdx,
+/* Generated */              params->in[0].data.inPrice.high, /* inHigh */
+/* Generated */              params->in[0].data.inPrice.low, /* inLow */
+/* Generated */              params->in[0].data.inPrice.close, /* inClose */
+/* Generated */              params->in[0].data.inPrice.volume, /* inVolume */
+/* Generated */              params->optIn[0].data.optInInteger, /* optInTimePeriod*/
+/* Generated */              outBegIdx, 
+/* Generated */              outNBElement, 
+/* Generated */              params->out[0].data.outReal /*  outReal */ );
+/* Generated */ }
+/* Generated */ unsigned int TA_VWAP_FramePPLB( const TA_ParamHolderPriv *params )
+/* Generated */ {
+/* Generated */    return TA_VWAP_Lookback(params->optIn[0].data.optInInteger /* optInTimePeriod*/ );
+/* Generated */ }
+/* Generated */ unsigned int TA_VWAP_FramePPSI( const TA_ParamHolderPriv *params )
+/* Generated */ {
+/* Generated */    return TA_VWAP_StateInit( (struct TA_VWAP_State**) &params->_state,
+/* Generated */                      params->optIn[0].data.optInInteger /* optInTimePeriod*/ );
+/* Generated */ }
+/* Generated */ unsigned int TA_VWAP_FramePPS( const TA_ParamHolderPriv *params )
+/* Generated */ {
+/* Generated */    return TA_VWAP_State( *(struct TA_VWAP_State**) &params->_state,
+/* Generated */                      *params->in[0].data.inPrice.high, /* inHigh */
+/* Generated */                      *params->in[0].data.inPrice.low, /* inLow */
+/* Generated */                      *params->in[0].data.inPrice.close, /* inClose */
+/* Generated */                      *params->in[0].data.inPrice.volume, /* inVolume */
+/* Generated */                      params->out[0].data.outReal /*  *outReal */ );
+/* Generated */ }
+/* Generated */ unsigned int TA_VWAP_FramePPSF( const TA_ParamHolderPriv *params )
+/* Generated */ {
+/* Generated */    return TA_VWAP_StateFree( (struct TA_VWAP_State**) &params->_state
+ );
+/* Generated */ }
+/* Generated */ unsigned int TA_VWAP_FramePPSS( const TA_ParamHolderPriv *params, FILE* _file )
+/* Generated */ {
+/* Generated */    return TA_VWAP_StateSave( *(struct TA_VWAP_State**) &params->_state,
+/* Generated */                       _file );
+/* Generated */ }
+/* Generated */ unsigned int TA_VWAP_FramePPSL( const TA_ParamHolderPriv *params, FILE* _file )
+/* Generated */ {
+/* Generated */    return TA_VWAP_StateLoad( (struct TA_VWAP_State**) &params->_state,
+/* Generated */                       _file );
+/* Generated */ }
+/* Generated */ unsigned int TA_VWAP_FramePPBS( const TA_ParamHolderPriv *params,
+/* Generated */                           int            startIdx,
+/* Generated */                           int            endIdx,
+/* Generated */                           int           *outBegIdx,
+/* Generated */                           int           *outNBElement )
+/* Generated */ {
+/* Generated */    return TA_VWAP_BatchState( *(struct TA_VWAP_State**) &params->_state,
+/* Generated */                      startIdx,
+/* Generated */                      endIdx,
+/* Generated */                      params->in[0].data.inPrice.high, /* inHigh */
+/* Generated */                      params->in[0].data.inPrice.low, /* inLow */
+/* Generated */                      params->in[0].data.inPrice.close, /* inClose */
+/* Generated */                      params->in[0].data.inPrice.volume, /* inVolume */
+/* Generated */                      outBegIdx, 
+/* Generated */                      outNBElement, 
+/* Generated */                      params->out[0].data.outReal /*  outReal */ );
+/* Generated */ }
 /* Generated */ TA_RetCode TA_WCLPRICE_FramePP( const TA_ParamHolderPriv *params,
 /* Generated */                           int            startIdx,
 /* Generated */                           int            endIdx,

@@ -59,6 +59,8 @@
 #include "ta_utility.h"
 
 /**** External functions declarations. ****/
+void setInputBufferReverseOrder(int index, double *buffer, int size);
+
 /* None */
 
 /**** External variables declarations. ****/
@@ -866,10 +868,10 @@ static ErrorNumber do_test_state( const TA_History *history,
    TEST_4IN(CDLUPSIDEGAP2CROWS)
    TEST_4IN(CDLXSIDEGAP3METHODS)
 
-//   setInputBufferReverseOrder( 0, history->open,  history->nbBars );
-//   setInputBufferReverseOrder( 1, history->high,  history->nbBars );
-//   setInputBufferReverseOrder( 2, history->low,   history->nbBars );
-//   setInputBufferReverseOrder( 3, history->close, history->nbBars );
+  setInputBufferReverseOrder( 0, history->open,  history->nbBars );
+  setInputBufferReverseOrder( 1, history->high,  history->nbBars );
+  setInputBufferReverseOrder( 2, history->low,   history->nbBars );
+  setInputBufferReverseOrder( 3, history->close, history->nbBars );
 
            if( strcmp(test->name,"CDLINNECK") == 0 )
            {

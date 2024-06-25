@@ -9491,6 +9491,71 @@ public RetCode variance(
 ); }
 
 
+public int vwapLookback(
+        int optInTimePeriod) {
+    return super.vwapLookback(
+        optInTimePeriod); }
+
+@FuncInfo(
+        name  = "VWAP",
+        group = "Volume Indicators",
+        flags = 0,
+        nbInput    = 1,
+        nbOptInput = 1,
+        nbOutput   = 1
+)
+public RetCode vwap(
+            int startIdx,
+            int endIdx,
+            @InputParameterInfo(
+                paramName = "inPriceHLCV",
+                flags     = 30,
+                type = InputParameterType.TA_Input_Price
+            )
+            double inHigh [],
+            double inLow [],
+            double inClose [],
+            double inVolume [],
+            @OptInputParameterInfo(
+                paramName    = "optInTimePeriod",
+                displayName  = "Time Period",
+                flags        = 0,
+                type    = OptInputParameterType.TA_OptInput_IntegerRange,
+                dataSet = com.tictactec.ta.lib.meta.annotation.IntegerRange.class
+            )
+            @IntegerRange(
+                    paramName    = "optInTimePeriod",
+                    defaultValue = 30,
+                    min          = 1,
+                    max          = 100000,
+                    suggested_start     = 1,
+                    suggested_end       = 200,
+                    suggested_increment = 1
+            )
+            int optInTimePeriod,
+            MInteger     outBegIdx,
+            MInteger     outNBElement,
+            @OutputParameterInfo(
+                paramName = "outReal",
+                flags     = 1,
+                type = OutputParameterType.TA_Output_Real
+            )
+            double outReal[]
+) {
+    return super.vwap (
+        startIdx,
+        endIdx,
+        inHigh ,
+        inLow ,
+        inClose ,
+        inVolume ,
+        optInTimePeriod,
+        outBegIdx,
+        outNBElement,
+        outReal
+); }
+
+
 public int wclPriceLookback(
 ) {
     return super.wclPriceLookback(

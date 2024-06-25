@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<FinancialFunctionGroups version="TA-Lib RT 0.8.1-alpha (Jan  7 2024 21:58:08)">
+<FinancialFunctionGroups version="TA-Lib RT 0.8.1-alpha (Jun 25 2024 16:43:41)">
 	<!-- ACCBANDS -->
 	<FinancialFunctionGroup>
 		<Abbreviation>ACCBANDS</Abbreviation>
@@ -46499,6 +46499,329 @@
 							<SuggestedIncrement>2.000000e-1</SuggestedIncrement>
 						</Range>
 						<DefaultValue>1.000000e+0</DefaultValue>
+					</OptionalInputArgument>
+				</OptionalInputArguments>
+			</Function>
+		</Functions>
+	</FinancialFunctionGroup>
+
+
+	<!-- VWAP -->
+	<FinancialFunctionGroup>
+		<Abbreviation>VWAP</Abbreviation>
+		<CamelCaseName>Vwap</CamelCaseName>
+		<ShortDescription>Volume Weighted Average Price</ShortDescription>
+		<GroupId>Volume Indicators</GroupId>
+		<StateMemory>
+			<StateMemoryField>
+				<Type>Double</Type>
+				<Name>High</Name>
+			</StateMemoryField>
+			<StateMemoryField>
+				<Type>Double</Type>
+				<Name>Low</Name>
+			</StateMemoryField>
+			<StateMemoryField>
+				<Type>Double</Type>
+				<Name>Close</Name>
+			</StateMemoryField>
+			<StateMemoryField>
+				<Type>Double</Type>
+				<Name>Volume</Name>
+			</StateMemoryField>
+		</StateMemory>
+		<State>
+			<StateField>
+				<Type>Integer</Type>
+				<Name>mem_size</Name>
+			</StateField>
+			<StateField>
+				<Type>Integer</Type>
+				<Name>mem_index</Name>
+			</StateField>
+			<StateField>
+				<Type>Pointer</Type>
+				<Name>memory</Name>
+			</StateField>
+			<StateField>
+				<Type>Double</Type>
+				<Name>periodTotal1</Name>
+			</StateField>
+			<StateField>
+				<Type>Double</Type>
+				<Name>periodTotal2</Name>
+			</StateField>
+		</State>
+		<Functions>
+			<Function>
+				<Name>TA_VWAP_Lookback</Name>
+				<Type>Lookback</Type>
+				<ReturnValue>Integer</ReturnValue>
+				<OptionalInputArguments>
+					<OptionalInputArgument>
+						<Name>Time Period</Name>
+						<ShortDescription>Number of period</ShortDescription>
+						<Type>Integer</Type>
+						<Range>
+							<Minimum>1</Minimum>
+							<Maximum>100000</Maximum>
+							<SuggestedStart>100000</SuggestedStart>
+							<SuggestedEnd>100000</SuggestedEnd>
+							<SuggestedIncrement>100000</SuggestedIncrement>
+						</Range>
+						<DefaultValue>30</DefaultValue>
+					</OptionalInputArgument>
+				</OptionalInputArguments>
+			</Function>
+			<Function>
+				<Name>TA_VWAP</Name>
+				<Type>Regular</Type>
+				<ReturnValue>TA_Result</ReturnValue>
+				<RequiredInputArguments>
+					<RequiredInputArgument>
+						<Type>Integer</Type>
+						<Name>startIdx</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Integer</Type>
+						<Name>endIdx</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>High</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>Low</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>Close</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>Volume</Name>
+					</RequiredInputArgument>
+				</RequiredInputArguments>
+				<OptionalInputArguments>
+					<OptionalInputArgument>
+						<Name>Time Period</Name>
+						<ShortDescription>Number of period</ShortDescription>
+						<Type>Integer</Type>
+						<Range>
+							<Minimum>1</Minimum>
+							<Maximum>100000</Maximum>
+							<SuggestedStart>100000</SuggestedStart>
+							<SuggestedEnd>100000</SuggestedEnd>
+							<SuggestedIncrement>100000</SuggestedIncrement>
+						</Range>
+						<DefaultValue>30</DefaultValue>
+					</OptionalInputArgument>
+				</OptionalInputArguments>
+				<OutputArguments>
+					<OutputArgument>
+						<Type>Pointer to Integer</Type>
+						<Name>outBegIdx</Name>
+					</OutputArgument>
+					<OutputArgument>
+						<Type>Pointer to Integer</Type>
+						<Name>outNBElement</Name>
+					</OutputArgument>
+					<OutputArgument>
+						<Type>Double Array</Type>
+						<Name>outReal</Name>
+						<Flags>
+							<Flag>Line</Flag>
+						</Flags>
+					</OutputArgument>
+				</OutputArguments>
+			</Function>
+			<Function>
+				<Name>TA_VWAP_StateInit</Name>
+				<Type>StateInit</Type>
+				<ReturnValue>TA_Result</ReturnValue>
+				<SpecialInputArguments>
+					<SpecialInputArgument>
+						<Type>Pointer to Pointer</Type>
+						<Name>state</Name>
+					</SpecialInputArgument>
+				</SpecialInputArguments>
+				<OptionalInputArguments>
+					<OptionalInputArgument>
+						<Name>Time Period</Name>
+						<ShortDescription>Number of period</ShortDescription>
+						<Type>Integer</Type>
+						<Range>
+							<Minimum>1</Minimum>
+							<Maximum>100000</Maximum>
+							<SuggestedStart>100000</SuggestedStart>
+							<SuggestedEnd>100000</SuggestedEnd>
+							<SuggestedIncrement>100000</SuggestedIncrement>
+						</Range>
+						<DefaultValue>30</DefaultValue>
+					</OptionalInputArgument>
+				</OptionalInputArguments>
+			</Function>
+			<Function>
+				<Name>TA_VWAP_State</Name>
+				<Type>State</Type>
+				<ReturnValue>TA_Result</ReturnValue>
+				<SpecialInputArguments>
+					<SpecialInputArgument>
+						<Type>Pointer</Type>
+						<Name>state</Name>
+					</SpecialInputArgument>
+				</SpecialInputArguments>
+				<RequiredInputArguments>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>High</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>Low</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>Close</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>Volume</Name>
+					</RequiredInputArgument>
+				</RequiredInputArguments>
+				<OutputArguments>
+					<OutputArgument>
+						<Type>Double</Type>
+						<Name>outReal</Name>
+						<Flags>
+							<Flag>Line</Flag>
+						</Flags>
+					</OutputArgument>
+				</OutputArguments>
+			</Function>
+			<Function>
+				<Name>TA_VWAP_BatchState</Name>
+				<Type>BatchState</Type>
+				<ReturnValue>TA_Result</ReturnValue>
+				<SpecialInputArguments>
+					<SpecialInputArgument>
+						<Type>Pointer</Type>
+						<Name>state</Name>
+					</SpecialInputArgument>
+				</SpecialInputArguments>
+				<RequiredInputArguments>
+					<RequiredInputArgument>
+						<Type>Integer</Type>
+						<Name>startIdx</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Integer</Type>
+						<Name>endIdx</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>High</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>Low</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>Close</Name>
+					</RequiredInputArgument>
+					<RequiredInputArgument>
+						<Type>Double</Type>
+						<Name>Volume</Name>
+					</RequiredInputArgument>
+				</RequiredInputArguments>
+				<OutputArguments>
+					<OutputArgument>
+						<Type>Pointer to Integer</Type>
+						<Name>outBegIdx</Name>
+					</OutputArgument>
+					<OutputArgument>
+						<Type>Pointer to Integer</Type>
+						<Name>outNBElement</Name>
+					</OutputArgument>
+					<OutputArgument>
+						<Type>Double Array</Type>
+						<Name>outReal</Name>
+						<Flags>
+							<Flag>Line</Flag>
+						</Flags>
+					</OutputArgument>
+				</OutputArguments>
+			</Function>
+			<Function>
+				<Name>TA_VWAP_StateFree</Name>
+				<Type>StateFree</Type>
+				<ReturnValue>TA_Result</ReturnValue>
+				<SpecialInputArguments>
+					<SpecialInputArgument>
+						<Type>Pointer to Pointer</Type>
+						<Name>state</Name>
+					</SpecialInputArgument>
+				</SpecialInputArguments>
+			</Function>
+			<Function>
+				<Name>TA_VWAP_StateLoad</Name>
+				<Type>StateLoad</Type>
+				<ReturnValue>TA_Result</ReturnValue>
+				<SpecialInputArguments>
+					<SpecialInputArgument>
+						<Type>Pointer to Pointer</Type>
+						<Name>state</Name>
+					</SpecialInputArgument>
+					<SpecialInputArgument>
+						<Type>Pointer to File</Type>
+						<Name>file</Name>
+					</SpecialInputArgument>
+				</SpecialInputArguments>
+				<OptionalInputArguments>
+					<OptionalInputArgument>
+						<Name>Time Period</Name>
+						<ShortDescription>Number of period</ShortDescription>
+						<Type>Integer</Type>
+						<Range>
+							<Minimum>1</Minimum>
+							<Maximum>100000</Maximum>
+							<SuggestedStart>100000</SuggestedStart>
+							<SuggestedEnd>100000</SuggestedEnd>
+							<SuggestedIncrement>100000</SuggestedIncrement>
+						</Range>
+						<DefaultValue>30</DefaultValue>
+					</OptionalInputArgument>
+				</OptionalInputArguments>
+			</Function>
+			<Function>
+				<Name>TA_VWAP_StateSave</Name>
+				<Type>StateSave</Type>
+				<ReturnValue>TA_Result</ReturnValue>
+				<SpecialInputArguments>
+					<SpecialInputArgument>
+						<Type>Pointer</Type>
+						<Name>state</Name>
+					</SpecialInputArgument>
+					<SpecialInputArgument>
+						<Type>Pointer to File</Type>
+						<Name>file</Name>
+					</SpecialInputArgument>
+				</SpecialInputArguments>
+				<OptionalInputArguments>
+					<OptionalInputArgument>
+						<Name>Time Period</Name>
+						<ShortDescription>Number of period</ShortDescription>
+						<Type>Integer</Type>
+						<Range>
+							<Minimum>1</Minimum>
+							<Maximum>100000</Maximum>
+							<SuggestedStart>100000</SuggestedStart>
+							<SuggestedEnd>100000</SuggestedEnd>
+							<SuggestedIncrement>100000</SuggestedIncrement>
+						</Range>
+						<DefaultValue>30</DefaultValue>
 					</OptionalInputArgument>
 				</OptionalInputArguments>
 			</Function>

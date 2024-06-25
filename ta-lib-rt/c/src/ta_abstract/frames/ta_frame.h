@@ -4076,6 +4076,31 @@
 /* Generated */ unsigned int TA_VAR_FramePPSL( const TA_ParamHolderPriv *params, FILE* _file )
 ;
 
+/* Generated */ TA_RetCode TA_VWAP_FramePP( const TA_ParamHolderPriv *params,
+/* Generated */                           int            startIdx,
+/* Generated */                           int            endIdx,
+/* Generated */                           int           *outBegIdx,
+/* Generated */                           int           *outNBElement )
+;
+/* Generated */ unsigned int TA_VWAP_FramePPLB( const TA_ParamHolderPriv *params )
+;
+/* Generated */ unsigned int TA_VWAP_FramePPSI( const TA_ParamHolderPriv *params )
+;
+/* Generated */ unsigned int TA_VWAP_FramePPS( const TA_ParamHolderPriv *params )
+;
+/* Generated */ unsigned int TA_VWAP_FramePPBS( const TA_ParamHolderPriv *params,
+/* Generated */                           int            startIdx,
+/* Generated */                           int            endIdx,
+/* Generated */                           int           *outBegIdx,
+/* Generated */                           int           *outNBElement )
+;
+/* Generated */ unsigned int TA_VWAP_FramePPSF( const TA_ParamHolderPriv *params )
+;
+/* Generated */ unsigned int TA_VWAP_FramePPSS( const TA_ParamHolderPriv *params, FILE* _file )
+;
+/* Generated */ unsigned int TA_VWAP_FramePPSL( const TA_ParamHolderPriv *params, FILE* _file )
+;
+
 /* Generated */ TA_RetCode TA_WCLPRICE_FramePP( const TA_ParamHolderPriv *params,
 /* Generated */                           int            startIdx,
 /* Generated */                           int            endIdx,

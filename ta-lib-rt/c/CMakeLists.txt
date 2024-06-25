@@ -200,6 +200,7 @@ SET(ta-lib-rt_CSOURCES
 	${ta-lib-rt_SOURCE_DIR}/c/src/ta_func/ta_BETA.c
 	${ta-lib-rt_SOURCE_DIR}/c/src/ta_func/ta_CDL3INSIDE.c
 	${ta-lib-rt_SOURCE_DIR}/c/src/ta_func/ta_ADX.c
+	${ta-lib-rt_SOURCE_DIR}/c/src/ta_func/ta_VWAP.c
 	${ta-lib-rt_SOURCE_DIR}/c/src/ta_common/ta_version.c
 	${ta-lib-rt_SOURCE_DIR}/c/src/ta_common/ta_retcode.c
 	${ta-lib-rt_SOURCE_DIR}/c/src/ta_common/ta_global.c

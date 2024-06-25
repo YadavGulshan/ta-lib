@@ -843,6 +843,11 @@
 #define TA_VAR_StateInit variance
 #define TA_VAR_State variance
 #define TA_VAR_StateFree variance
+#define TA_VWAP_Lookback vwapLookback
+#define TA_VWAP vwap
+#define TA_VWAP_StateInit vwap
+#define TA_VWAP_State vwap
+#define TA_VWAP_StateFree vwap
 #define TA_WCLPRICE_Lookback wclPriceLookback
 #define TA_WCLPRICE wclPrice
 #define TA_WCLPRICE_StateInit wclPrice

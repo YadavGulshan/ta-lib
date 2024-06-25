@@ -11454,6 +11454,83 @@ TA_RetCode TA_VAR_StateLoad( struct TA_VAR_State** _state,
 
 
 /*
+ * TA_VWAP - Volume Weighted Average Price
+ * 
+ * Input  = High, Low, Close, Volume
+ * Output = double
+ * 
+ * Optional Parameters
+ * -------------------
+ * optInTimePeriod:(From 1 to 100000)
+ *    Number of period
+ * 
+ * 
+ */
+TA_RetCode TA_VWAP( int           START_IDX,
+                    int           END_IDX,
+                    const double *IN_ARRAY /* inHigh */,
+                    const double *IN_ARRAY /* inLow */,
+                    const double *IN_ARRAY /* inClose */,
+                    const double *IN_ARRAY /* inVolume */,
+                    int           OPT_INT /* optInTimePeriod */, /* From 1 to 100000 */
+                    int          *BEG_IDX,
+                    int          *OUT_SIZE,
+                    double       *OUT_ARRAY /* outReal */ );
+
+int TA_VWAP_Lookback( int           optInTimePeriod );  /* From 1 to 100000 */
+
+
+struct TA_VWAP_Data {
+                    double       inHigh;
+                    double       inLow;
+                    double       inClose;
+                    double       inVolume;
+                    };
+struct TA_VWAP_State {
+                     size_t mem_size;
+                     size_t mem_index;
+                     struct TA_VWAP_Data* memory;
+                     double       periodTotal1;
+                     double       periodTotal2;
+                     int           optInTimePeriod; /* From 1 to 100000 */
+                     };
+
+
+TA_RetCode TA_VWAP_StateInit( struct TA_VWAP_State** _state,
+                            int           optInTimePeriod );  /* From 1 to 100000 */
+
+
+TA_RetCode TA_VWAP_State( struct TA_VWAP_State* _state,
+                        const double inHigh,
+                        const double inLow,
+                        const double inClose,
+                        const double inVolume,
+                        double        *outReal );
+
+TA_RetCode TA_VWAP_BatchState( struct TA_VWAP_State* _state,
+                             int startIdx,
+                             int endIdx,
+                             const double inHigh[],
+                             const double inLow[],
+                             const double inClose[],
+                             const double inVolume[],
+                             int          *outBegIdx,
+                             int          *outNBElement,
+                             double        outReal[] );
+
+TA_RetCode TA_VWAP_StateFree( struct TA_VWAP_State** _state );
+
+
+TA_RetCode TA_VWAP_StateSave( struct TA_VWAP_State* _state,
+                            FILE* _file );
+
+
+TA_RetCode TA_VWAP_StateLoad( struct TA_VWAP_State** _state,
+                            FILE* _file );
+
+
+
+/*
  * TA_WCLPRICE - Weighted Close Price
  * 
  * Input  = High, Low, Close

@@ -121,7 +121,7 @@
 #else
 # define TA_FS_SLASH "/"
 /* XXX resolve this dynamically or take as param */
-# define TA_MCPP_EXE "/usr/bin/mcpp"
+# define TA_MCPP_EXE "/opt/homebrew/bin/mcpp"
 #endif
 
 extern int mcpp_main( int argc, char ** argv);
