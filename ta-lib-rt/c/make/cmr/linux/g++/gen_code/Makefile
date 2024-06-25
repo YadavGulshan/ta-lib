@@ -24,7 +24,7 @@ GZIP	=	gzip -9f
 ####### Support for 64-bit systems
 ifeq ($(shell uname -m), x86_64)
      CFLAGS   += -march=x86-64 -m64 -D__64BIT__
-     CXXFLAGS += -march=x86-64 -m64 -D__64BIT__
+     CXXFLAGS += -march=x86-64 -m64 -D__64BIT__x
 endif
 
 ####### Apply additional overruling user flags, if any

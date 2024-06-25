@@ -26,18 +26,18 @@ system( "mkdir -p $workdir/dist" ) == 0 or die "Cannot create directory $workdir
 
 if( not defined $srcdir )
 {
-    # Get the latest code from SVN
-    system( "svn co https://ta-lib.svn.sourceforge.net/svnroot/ta-lib/trunk/ta-lib/c/ $workdir/ta-lib" ) == 0 or die "Failed to checkout latest SVN code.";
-
-    # Enable exec permission here, until we figure out how to do it in SVN instead.
+    # Get the latest code from Git
+    system( "git clone https://github.com/ta-lib/ta-lib.git $workdir/ta-lib" ) == 0 or die "Failed to clone latest Git repository.";
+    
+    # Enable exec permission here, until we figure out how to do it in Git instead.
     system( "chmod guo+x $workdir/ta-lib/autogen.sh" ) == 0 or die "Failed to set exec permission for autogen.sh";
-}else
+}
+else
 {
     # Copy srcdir into build tree
     print "Acquiring sources...\n";
     system( "cp $srcdir $workdir/ta-lib -R" ) == 0 or die "Failed to copy source directory.";
 }
-
 # Additional (non-mandatory) copy of doc from my VMWare shared distribution directory.
 if( -e '/mnt/hgfs/ta-lib-user/ta-lib-work/dist' )
 {
@@ -61,8 +61,8 @@ chdir "$workdir/ta-lib" or die "Cannot chdir to $workdir/ta-lib";
 
 # Change the version number in configure.in
 my $tmp = `mktemp`; chomp($tmp);
-system( "cp configure.in $tmp" ) == 0 or die "Failed to copy configure.in";
-system( "sed -e 's/\\[SVN\\]/\[$version\]/g' < $tmp > configure.in" ) == 0 or die "Failed to modify configure version number.";
+system( "cp configure.ac $tmp" ) == 0 or die "Failed to copy configure.ac";
+system( "sed -e 's/\\[SVN\\]/\[$version\]/g' < $tmp > configure.ac" ) == 0 or die "Failed to modify configure version number.";
 unlink $tmp or die "Failed to remove $tmp";
 system( "./autogen.sh" ) == 0 or die "Failed to autoconf files.";
 
